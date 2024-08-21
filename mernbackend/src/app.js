@@ -61,9 +61,16 @@ app.post('/register', async (req, res) => {
 
 // Login route
 app.get('/login', (req, res) => {
-    res.render('login');
+    res.status(404).send('<h1>Oops! Page Not Found</h1>');
 });
 
+
+
+app.use((req, res) => {
+    res.status(404).render('404', {
+        errorMsg: 'Oops! Page Not Found'
+    });
+})
 
 app.listen(port, () => {
     console.log('Server is running on port', port);
